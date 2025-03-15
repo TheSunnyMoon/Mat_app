@@ -1,0 +1,11 @@
+{
+  "name": "monprojet/slim-api",
+  "description": "API Slim Framework pour mon application",
+  "license": "MIT",
+  "require": {
+      "slim/slim": "^4.0",
+      "slim/psr7": "^1.4",
+      "vlucas/phpdotenv": "^5.5",
+      "firebase/php-jwt": "^6.0"
+  }
+}

@@ -1,0 +1,7 @@
+# Exclure le dossier vendor (dépendances installées par Composer)
+vendor/
+
+# Fichiers et dossiers temporaires ou spécifiques à l'IDE
+*.log
+.DS_Store
+.idea/

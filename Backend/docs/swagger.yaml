@@ -1,0 +1,45 @@
+openapi: 3.0.0
+info:
+  title: API d'authentification
+  version: 1.0.0
+paths:
+  /api/register:
+    post:
+      summary: Enregistrer un utilisateur
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Utilisateur créé avec succès
+        '400':
+          description: Erreur dans la requête
+  /api/login:
+    post:
+      summary: Connexion utilisateur
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Connexion réussie
+        '401':
+          description: Identifiants incorrects
