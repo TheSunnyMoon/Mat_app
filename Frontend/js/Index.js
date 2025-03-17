@@ -33,7 +33,7 @@ document.getElementById("login-form").addEventListener("submit", function(event)
     const email = document.getElementById("login-email").value;
     const password = document.getElementById("login-password").value;
 
-    fetch("http://localhost:8082/api/login", {  // Same here, make sure API path is correct
+    fetch("http://localhost:8082/api/connect", {  // Same here, make sure API path is correct
         method: "POST",
         headers: { 
             "Content-Type": "application/json" 
