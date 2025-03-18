@@ -7,7 +7,7 @@ document.getElementById("register-form").addEventListener("submit", function(eve
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    fetch("http://localhost:8082/api/register", {  // Assure-toi que localhost fonctionne avec nginx_proxy:82
+    fetch("http://env-8708020.jcloud.ik-server.com:8082/api/register", {  // Assure-toi que localhost fonctionne avec nginx_proxy:82
         method: "POST",
         headers: { 
             "Content-Type": "application/json" 
@@ -33,7 +33,7 @@ document.getElementById("login-form").addEventListener("submit", function(event)
     const email = document.getElementById("login-email").value;
     const password = document.getElementById("login-password").value;
 
-    fetch("http://localhost:8082/api/connect", {  // Same here, make sure API path is correct
+    fetch("http://env-8708020.jcloud.ik-server.com:8082/api/connect", {  // Same here, make sure API path is correct
         method: "POST",
         headers: { 
             "Content-Type": "application/json" 

@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:8082/api",
+      "url": "http://env-8708020.jcloud.ik-server.com:8082/api",
       "description": "Local development server"
     }
   ],
