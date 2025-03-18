@@ -45,7 +45,7 @@ services:
       - app-network
   nginx:
     build:
-      context: ./Frontend/
+      context: ./frontend/
     container_name: nginx_proxy
     ports:
       - "8080:80"

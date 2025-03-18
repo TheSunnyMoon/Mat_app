@@ -19,6 +19,8 @@ $app->add(function ($request, $handler) {
         ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
 });
 
+
+
 // Handle OPTIONS requests - ADD THIS NEW SECTION
 $app->options('/{routes:.+}', function ($request, $response, $args) {
     return $response;
@@ -45,6 +47,57 @@ function getPDO() {
     }
     return $pdo;
 }
+
+
+$app->get('/api/swagger.json', function(Request $request, Response $response) {
+    $jsonFile = __DIR__ . '/../docs/swagger.json';
+    $jsonData = file_get_contents($jsonFile);
+    
+    $response->getBody()->write($jsonData);
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
+// Add a docs route to serve Swagger UI
+$app->get('/docs', function(Request $request, Response $response) {
+    $html = <<<HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mat_App API Documentation</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.11.0/swagger-ui.css" />
+  <style>
+    html { box-sizing: border-box; overflow: -moz-scrollbars-vertical; overflow-y: scroll; }
+    *, *:before, *:after { box-sizing: inherit; }
+    body { margin: 0; background: #fafafa; }
+  </style>
+</head>
+<body>
+  <div id="swagger-ui"></div>
+  <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.11.0/swagger-ui-bundle.js" charset="UTF-8"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.11.0/swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
+  <script>
+    window.onload = function() {
+      const ui = SwaggerUIBundle({
+        url: "/api/swagger.json",
+        dom_id: '#swagger-ui',
+        deepLinking: true,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        layout: "StandaloneLayout"
+      });
+      window.ui = ui;
+    };
+  </script>
+</body>
+</html>
+HTML;
+    
+    $response->getBody()->write($html);
+    return $response->withHeader('Content-Type', 'text/html');
+});
 
 $app->get('/api/debug/table', function(Request $request, Response $response, $args) {
     $pdo = getPDO();
